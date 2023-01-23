@@ -170,7 +170,7 @@ export const Footer = () => {
           color="primary"
           sx={laptop ? { fontSize: "1em" } : { margin: "20px 0px" }}
         >
-          Easybank. All Rights Reserved
+         © Easybank. All Rights Reserved
         </Typography>
       </Box>
     </Box>
