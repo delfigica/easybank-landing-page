@@ -7,6 +7,7 @@ import {
   useTheme,
 } from "@mui/material";
 import logo from "../assets/logo.svg";
+import { MenuDrawer } from "./MenuDrawer";
 
 export const NavBar = () => {
   const links = ["Home", "About", "Contact", "Blog", "Careers"];
@@ -17,12 +18,21 @@ export const NavBar = () => {
 
   return (
     <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        padding: "1em 0",
-        justifyContent: "space-evenly",
-      }}
+      sx={
+        laptop
+          ? {
+              display: "flex",
+              alignItems: "center",
+              padding: "1em 0",
+              justifyContent: "space-evenly",
+            }
+          : {
+              display: "flex",
+              alignItems: "center",
+              padding: '1em',
+              justifyContent: 'space-between'
+            }
+      }
     >
       <Box sx={{ width: "200px" }}>
         <img src={logo} />
@@ -57,7 +67,7 @@ export const NavBar = () => {
           </Button>
         </>
       ) : (
-        <Box></Box>
+        <MenuDrawer />
       )}
     </Box>
   );
