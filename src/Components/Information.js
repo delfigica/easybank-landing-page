@@ -1,5 +1,11 @@
 import React from "react";
-import { Avatar, Box, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Typography,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import api from "../assets/icon-api.svg";
 import online from "../assets/icon-online.svg";
 import onboarding from "../assets/icon-onboarding.svg";
@@ -36,18 +42,53 @@ export const Information = () => {
       image: api,
     },
   ];
+
+  const theme = useTheme();
+
+  const laptop = useMediaQuery(theme.breakpoints.up("lg"));
+
   return (
-    <Box sx={{ height: "80vh", background: "hsl(0, 0%, 98%)", padding: '2.5em' }}>
-      <Box sx={{ width: "45%", margin: '20px' }}>
-        <Typography sx={{ fontSize: "2em" }}>Why choose Easybank?</Typography>
+    <Box
+      sx={
+        laptop
+          ? { height: "80vh", background: "hsl(0, 0%, 98%)", padding: "2.5em" }
+          : { background: "hsl(0, 0%, 98%)", padding: "20px 0px" }
+      }
+    >
+      <Box
+        sx={laptop ? { width: "45%", margin: "20px" } : { textAlign: "center" }}
+      >
+        <Typography
+          sx={
+            laptop
+              ? { fontSize: "2em", color: "hsl(233, 26%, 24%)" }
+              : { fontSize: "2em", color: "hsl(233, 26%, 24%)" , margin: '10px 0px'}
+          }
+        >
+          Why choose Easybank?
+        </Typography>
         <Typography color="primary">
           We leverage Open Banking to turn your bank account into your financial
           hub. Control your finances like never before.
         </Typography>
       </Box>
-      <Box sx={{ display: "flex" }}>
+      <Box
+        sx={
+          laptop
+            ? { display: "flex" }
+            : { display: "flex", flexDirection: "column", alignItems: "center" }
+        }
+      >
         {benefits.map((b) => (
-          <Box key={b.id} sx={{ padding: "1em" }}>
+          <Box
+            key={b.id}
+            sx={{
+              padding: "1em",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
             <Avatar src={b.image} sx={{ width: "70px", height: "70px" }} />
             <Typography
               sx={{
@@ -58,7 +99,10 @@ export const Information = () => {
             >
               {b.title}
             </Typography>
-            <Typography sx={{ width: "90%", fontWeight: 300 }} color="primary">
+            <Typography
+              sx={{ width: "90%", fontWeight: 300, textAlign: "center" }}
+              color="primary"
+            >
               {b.description}
             </Typography>
           </Box>
